@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2E7D32">
+    <meta name="description" content="تطبيق أذكاري - تطبيق أذكار إسلامي متكامل">
+    <title>أذكاري - الأذكار اليومية</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loader-icon"><i class="fas fa-mosque"></i></div>
+    <h2 style="color:white; margin-top:15px;">أذكاري</h2>
+    <p style="color:rgba(255,255,255,0.7);">جاري تحميل التطبيق...</p>
+</div>
+
+<div class="install-prompt" id="installPrompt">
+    <i class="fas fa-download"></i>
+    <span>تثبيت التطبيق على الشاشة الرئيسية</span>
+    <button id="installBtn">تثبيت</button>
+    <button id="closeInstallBtn" style="background:#999;">إغلاق</button>
+</div>
+
+<div class="app-container">
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon"><i class="fas fa-mosque"></i></div>
+            <div class="logo-text">
+                <h1>أذكاري</h1>
+                <p>أذكارك اليومية</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="install-btn" id="installHeaderBtn" style="display:none;"><i class="fas fa-download"></i></button>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="share-btn" id="shareBtn"><i class="fas fa-share-alt"></i></button>
+        </div>
+    </div>
+
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><div class="nav-link active" data-screen="prayerScreen"><i class="fas fa-clock"></i><span>الأوقات</span></div></li>
+            <li class="nav-item"><div class="nav-link" data-screen="dhikrScreen"><i class="fas fa-book"></i><span>الأذكار</span></div></li>
+            <li class="nav-item"><div class="nav-link" data-screen="namesScreen"><i class="fas fa-star"></i><span>أسماء الله</span></div></li>
+            <li class="nav-item"><div class="nav-link" data-screen="qiblaScreen"><i class="fas fa-location-arrow"></i><span>القبلة</span></div></li>
+            <li class="nav-item"><div class="nav-link" data-screen="tasbeehScreen"><i class="fas fa-hands-praying"></i><span>السبحة</span></div></li>
+            <li class="nav-item"><div class="nav-link" data-screen="settingsScreen"><i class="fas fa-cog"></i><span>الإعدادات</span></div></li>
+        </ul>
+    </div>
+
+    <!-- Prayer Times Screen -->
+    <div id="prayerScreen" class="screen active">
+        <div class="card prayer-main">
+            <div class="current-time" id="currentTime">--:--:--</div>
+            <div class="next-prayer" id="nextPrayer"></div>
+            <div class="time-remaining" id="timeRemaining">--:--:--</div>
+            <div class="date-info" style="margin-top:12px;">
+                <div id="gregorianDate">--</div>
+                <div id="hijriDate">--</div>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="card-title"><i class="fas fa-map-marker-alt"></i> موقعي</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span id="locationName">جاري التحديد...</span>
+                <button class="refresh-btn" id="refreshPrayerBtn" style="background:var(--primary); color:white; border:none; padding:8px 18px; border-radius:25px;"><i class="fas fa-sync-alt"></i> تحديث</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="card-title"><i class="fas fa-clock"></i> أوقات الصلاة</h3>
+            <div class="prayer-grid" id="prayerGrid"></div>
+        </div>
+    </div>
+
+    <!-- Dhikr Screen -->
+    <div id="dhikrScreen" class="screen"><div id="dhikrContent"></div></div>
+
+    <!-- Names Screen -->
+    <div id="namesScreen" class="screen"><div id="namesContent"></div></div>
+
+    <!-- Qibla Screen -->
+    <div id="qiblaScreen" class="screen"><div id="qiblaContent"></div></div>
+
+    <!-- Tasbeeh Screen -->
+    <div id="tasbeehScreen" class="screen"><div id="tasbeehContent"></div></div>
+
+    <!-- Settings Screen -->
+    <div id="settingsScreen" class="screen"><div id="settingsContent"></div></div>
+
+    <div class="footer"><p>أذكاري | جميع الحقوق محفوظة</p></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
